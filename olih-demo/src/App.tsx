@@ -5,6 +5,7 @@ import {
   ProCard,
   ProConfigProvider,
   ProLayout,
+  ProSettings,
 } from "@ant-design/pro-components";
 import HeaderDropdown from "./layout-components/HeaderDropdown";
 import MenuFooter from "./layout-components/MenuFooter";
@@ -15,6 +16,12 @@ const App: React.FC = () => {
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
   const [num, setNum] = useState(40);
 
+  const [settings] = useState<Partial<ProSettings> | undefined>({
+    fixSiderbar: true,
+    layout: "mix",
+    splitMenus: true,
+    title: "OLIH",
+  });
   if (typeof document === "undefined") {
     return <div />;
   }
@@ -65,6 +72,7 @@ const App: React.FC = () => {
             menuItemRender={(item, dom) => (
               <MenuItem item={item} setPathname={setPathname} dom={dom} />
             )}
+            {...settings}
             logo={true}
           >
             <PageContainer

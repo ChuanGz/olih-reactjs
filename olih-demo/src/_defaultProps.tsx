@@ -11,12 +11,6 @@ const MyFirstData = {
     path: "/",
     routes: [
       {
-        path: "/welcome",
-        name: "About",
-        icon: <InfoOutlined />,
-        component: "./Welcome",
-      },
-      {
         path: "/admin",
         name: "Admin Helper",
         icon: <HarmonyOSOutlined />,
@@ -31,7 +25,7 @@ const MyFirstData = {
           },
           {
             path: "/admin/sub-page2",
-            name: "2 - Customers",
+            name: "2 - Partners",
             icon: <SlackOutlined />,
             component: "./Welcome",
           },

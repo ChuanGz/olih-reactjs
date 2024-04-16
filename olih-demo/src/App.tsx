@@ -1,50 +1,21 @@
-import { DoubleRightOutlined, LogoutOutlined } from "@ant-design/icons";
+import { LogoutOutlined, SecurityScanOutlined } from "@ant-design/icons";
 import type { ProSettings } from "@ant-design/pro-components";
 import {
   PageContainer,
   ProCard,
   ProConfigProvider,
   ProLayout,
-  SettingDrawer,
 } from "@ant-design/pro-components";
-import { css } from "@emotion/css";
-import { Button, ConfigProvider, Dropdown, theme } from "antd";
-import React, { useState } from "react";
+import { Button, ConfigProvider, Dropdown } from "antd";
+import { useState } from "react";
 import defaultProps from "./_defaultProps";
 
-const Item: React.FC<{ children: React.ReactNode }> = (props) => {
-  const { token } = theme.useToken();
-  return (
-    <div
-      className={css`
-        color: ${token.colorTextSecondary};
-        font-size: 14px;
-        cursor: pointer;
-        line-height: 22px;
-        margin-bottom: 8px;
-        &:hover {
-          color: ${token.colorPrimary};
-        }
-      `}
-      style={{
-        width: "33.33%",
-      }}
-    >
-      {props.children}
-      <DoubleRightOutlined
-        style={{
-          marginInlineStart: 4,
-        }}
-      />
-    </div>
-  );
-};
-
 const MyApp = () => {
-  const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
+  const [settings] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     layout: "mix",
     splitMenus: true,
+    title: "OLIH",
   });
 
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
@@ -97,7 +68,7 @@ const MyApp = () => {
                 colorBgMenuItemSelected: "rgba(0,0,0,0.04)",
               },
             }}
-            siderMenuType="group"
+            siderMenuType="sub"
             menu={{
               collapsedShowGroupTitle: true,
             }}
@@ -110,6 +81,11 @@ const MyApp = () => {
                   <Dropdown
                     menu={{
                       items: [
+                        {
+                          key: "profile",
+                          icon: <SecurityScanOutlined />,
+                          label: "profile",
+                        },
                         {
                           key: "logout",
                           icon: <LogoutOutlined />,
@@ -147,14 +123,13 @@ const MyApp = () => {
               </div>
             )}
             {...settings}
+            logo={false}
           >
             <PageContainer
               token={{
                 paddingInlinePageContainerContent: num,
               }}
               extra={[
-                <Button key="3">View 3</Button>,
-                <Button key="2">View 2</Button>,
                 <Button
                   key="1"
                   type="primary"
@@ -162,8 +137,9 @@ const MyApp = () => {
                     setNum(num > 0 ? 0 : 40);
                   }}
                 >
-                  View 1
+                  Create New
                 </Button>,
+                <Button key="2">Edit</Button>,
               ]}
               subTitle="No Implementation"
               footer={[

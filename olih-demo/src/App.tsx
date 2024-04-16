@@ -1,6 +1,9 @@
 import {
+  BranchesOutlined,
+  CustomerServiceOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  ProductOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
@@ -24,18 +27,18 @@ const App: React.FC = () => {
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
+              icon: <BranchesOutlined />,
+              label: "Branches",
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              icon: <CustomerServiceOutlined />,
+              label: "Business Partners",
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
+              icon: <ProductOutlined />,
+              label: "Products",
             },
           ]}
         />

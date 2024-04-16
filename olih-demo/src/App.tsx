@@ -1,41 +1,31 @@
-import { LogoutOutlined, SecurityScanOutlined } from "@ant-design/icons";
-import type { ProSettings } from "@ant-design/pro-components";
+import React, { useState } from "react";
+import { ConfigProvider, Button } from "antd";
 import {
   PageContainer,
   ProCard,
   ProConfigProvider,
   ProLayout,
 } from "@ant-design/pro-components";
-import { Button, ConfigProvider, Dropdown } from "antd";
-import { useState } from "react";
+import HeaderDropdown from "./layout-components/HeaderDropdown";
+import MenuFooter from "./layout-components/MenuFooter";
+import MenuItem from "./layout-components/MenuItem";
 import defaultProps from "./_defaultProps";
 
-const MyApp = () => {
-  const [settings] = useState<Partial<ProSettings> | undefined>({
-    fixSiderbar: true,
-    layout: "mix",
-    splitMenus: true,
-    title: "OLIH",
-  });
-
+const MyApp: React.FC = () => {
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
   const [num, setNum] = useState(40);
+
   if (typeof document === "undefined") {
     return <div />;
   }
+
   return (
-    <div
-      id="test-pro-layout"
-      style={{
-        height: "100vh",
-        overflow: "auto",
-      }}
-    >
+    <div id="test-pro-layout" style={{ height: "100vh", overflow: "auto" }}>
       <ProConfigProvider hashed={false}>
         <ConfigProvider
-          getTargetContainer={() => {
-            return document.getElementById("test-pro-layout") || document.body;
-          }}
+          getTargetContainer={() =>
+            document.getElementById("test-pro-layout") || document.body
+          }
         >
           <ProLayout
             prefixCls="my1-prefix"
@@ -60,82 +50,30 @@ const MyApp = () => {
               },
             ]}
             {...defaultProps}
-            location={{
-              pathname,
-            }}
-            token={{
-              header: {
-                colorBgMenuItemSelected: "rgba(0,0,0,0.04)",
-              },
-            }}
+            location={{ pathname }}
+            token={{ header: { colorBgMenuItemSelected: "rgba(0,0,0,0.04)" } }}
             siderMenuType="sub"
-            menu={{
-              collapsedShowGroupTitle: true,
-            }}
+            menu={{ collapsedShowGroupTitle: true }}
             avatarProps={{
               src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
               size: "small",
               title: "Kendy",
-              render: (props, dom) => {
-                return (
-                  <Dropdown
-                    menu={{
-                      items: [
-                        {
-                          key: "profile",
-                          icon: <SecurityScanOutlined />,
-                          label: "profile",
-                        },
-                        {
-                          key: "logout",
-                          icon: <LogoutOutlined />,
-                          label: "logout",
-                        },
-                      ],
-                    }}
-                  >
-                    {dom}
-                  </Dropdown>
-                );
-              },
+              render: (props, dom) => <HeaderDropdown>{dom}</HeaderDropdown>,
             }}
-            menuFooterRender={(props) => {
-              if (props?.collapsed) return undefined;
-              return (
-                <div
-                  style={{
-                    textAlign: "center",
-                    paddingBlockStart: 12,
-                  }}
-                >
-                  <div>© 2024 Olih</div>
-                </div>
-              );
-            }}
+            menuFooterRender={() => <MenuFooter />}
             onMenuHeaderClick={(e) => console.log(e)}
             menuItemRender={(item, dom) => (
-              <div
-                onClick={() => {
-                  setPathname(item.path || "/welcome");
-                }}
-              >
-                {dom}
-              </div>
+              <MenuItem item={item} setPathname={setPathname} dom={dom} />
             )}
-            {...settings}
             logo={false}
           >
             <PageContainer
-              token={{
-                paddingInlinePageContainerContent: num,
-              }}
+              token={{ paddingInlinePageContainerContent: num }}
               extra={[
                 <Button
                   key="1"
                   type="primary"
-                  onClick={() => {
-                    setNum(num > 0 ? 0 : 40);
-                  }}
+                  onClick={() => setNum(num > 0 ? 0 : 40)}
                 >
                   Create New
                 </Button>,
@@ -149,29 +87,10 @@ const MyApp = () => {
                 <Button key="3">CANCEL</Button>,
               ]}
             >
-              <ProCard
-                style={{
-                  height: "200vh",
-                  minHeight: 800,
-                }}
-              >
+              <ProCard style={{ height: "200vh", minHeight: 800 }}>
                 <div />
               </ProCard>
             </PageContainer>
-
-            {/* <SettingDrawer
-              pathname={pathname}
-              enableDarkTheme
-              getContainer={(e: any) => {
-                if (typeof window === "undefined") return e;
-                return document.getElementById("test-pro-layout");
-              }}
-              settings={settings}
-              onSettingChange={(changeSetting) => {
-                setSetting(changeSetting);
-              }}
-              disableUrlParams={false}
-            /> */}
           </ProLayout>
         </ConfigProvider>
       </ProConfigProvider>

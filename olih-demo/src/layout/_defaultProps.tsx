@@ -1,6 +1,5 @@
 import {
   HarmonyOSOutlined,
-  InfoOutlined,
   ProjectOutlined,
   SlackOutlined,
   SunOutlined,

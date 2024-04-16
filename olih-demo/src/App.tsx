@@ -9,9 +9,9 @@ import {
 import HeaderDropdown from "./layout-components/HeaderDropdown";
 import MenuFooter from "./layout-components/MenuFooter";
 import MenuItem from "./layout-components/MenuItem";
-import defaultProps from "./_defaultProps";
+import defaultProps from "./layout-components/_defaultProps";
 
-const MyApp: React.FC = () => {
+const App: React.FC = () => {
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
   const [num, setNum] = useState(40);
 
@@ -20,11 +20,11 @@ const MyApp: React.FC = () => {
   }
 
   return (
-    <div id="test-pro-layout" style={{ height: "100vh", overflow: "auto" }}>
+    <div id="pro-layout" style={{ height: "100vh", overflow: "auto" }}>
       <ProConfigProvider hashed={false}>
         <ConfigProvider
           getTargetContainer={() =>
-            document.getElementById("test-pro-layout") || document.body
+            document.getElementById("pro-layout") || document.body
           }
         >
           <ProLayout
@@ -53,7 +53,7 @@ const MyApp: React.FC = () => {
             location={{ pathname }}
             token={{ header: { colorBgMenuItemSelected: "rgba(0,0,0,0.04)" } }}
             siderMenuType="sub"
-            menu={{ collapsedShowGroupTitle: true }}
+            menu={{ collapsedShowGroupTitle: false }}
             avatarProps={{
               src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
               size: "small",
@@ -65,7 +65,7 @@ const MyApp: React.FC = () => {
             menuItemRender={(item, dom) => (
               <MenuItem item={item} setPathname={setPathname} dom={dom} />
             )}
-            logo={false}
+            logo={true}
           >
             <PageContainer
               token={{ paddingInlinePageContainerContent: num }}
@@ -98,4 +98,4 @@ const MyApp: React.FC = () => {
   );
 };
 
-export default MyApp;
+export default App;

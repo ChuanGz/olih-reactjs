@@ -17,10 +17,14 @@ const App: React.FC = () => {
   const [num, setNum] = useState(40);
 
   const [settings] = useState<Partial<ProSettings> | undefined>({
+    fixedHeader: true,
     fixSiderbar: true,
     layout: "mix",
     splitMenus: true,
-    title: "OLIH",
+    siderMenuType: "group",
+    colorWeak: false,
+    colorPrimary: "orange",
+    title: "OLIH-Demo",
   });
   if (typeof document === "undefined") {
     return <div />;
@@ -60,7 +64,7 @@ const App: React.FC = () => {
             location={{ pathname }}
             token={{ header: { colorBgMenuItemSelected: "rgba(0,0,0,0.04)" } }}
             siderMenuType="sub"
-            menu={{ collapsedShowGroupTitle: false }}
+            menu={{ collapsedShowGroupTitle: true }}
             avatarProps={{
               src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
               size: "large",

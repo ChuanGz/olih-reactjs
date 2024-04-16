@@ -11,6 +11,7 @@ import HeaderDropdown from "./layout-components/HeaderDropdown";
 import MenuFooter from "./layout-components/MenuFooter";
 import MenuItem from "./layout-components/MenuItem";
 import defaultProps from "./layout-components/_defaultProps";
+import CTable from "./table-components/CTable";
 
 const App: React.FC = () => {
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
@@ -87,18 +88,13 @@ const App: React.FC = () => {
                   type="primary"
                   onClick={() => setNum(num > 0 ? 0 : 40)}
                 >
-                  Create New
+                  Inactive All
                 </Button>,
-                <Button key="2">Edit</Button>,
+                <Button key="2">Remove All</Button>,
               ]}
               subTitle="No Implementation"
-              footer={[
-                <Button key="2" type="primary">
-                  OK
-                </Button>,
-                <Button key="3">CANCEL</Button>,
-              ]}
             >
+              <CTable></CTable>
               <ProCard style={{ height: "200vh", minHeight: 800 }}>
                 <div />
               </ProCard>

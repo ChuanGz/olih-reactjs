@@ -3,15 +3,8 @@ import {
   AuditOutlined,
   BankOutlined,
   CloudServerOutlined,
-  HarmonyOSOutlined,
-<<<<<<<< HEAD:olih-demo/src/layout-components/_defaultProps.tsx
   IdcardOutlined,
   ProductOutlined,
-========
-  ProjectOutlined,
-  SlackOutlined,
-  SunOutlined,
->>>>>>>> production:olih-demo/src/layout/_defaultProps.tsx
 } from "@ant-design/icons";
 
 const MyFirstData = {

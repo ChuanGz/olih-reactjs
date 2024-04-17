@@ -6,17 +6,25 @@ import type {
 } from "@ant-design/pro-components";
 import { EditableProTable, ProCard, ProForm } from "@ant-design/pro-components";
 import React, { useRef, useState } from "react";
-import CPagination from "./CPagination";
-import { Button } from "antd";
-import { defaultData } from "./defaultData";
-import { DataSourceType } from "./DataSourceType";
+import CPagination from "./AntDPagination";
+import { Button, Tag } from "antd";
+import { defaultData } from "./fakeData/QuestionData";
+import { QuestionType } from "../user-types/QuestionType";
 
-const CTable = () => {
+const AntDTable = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
   const formRef = useRef<ProFormInstance<any>>();
   const actionRef = useRef<ActionType>();
   const editableFormRef = useRef<EditableFormInstance>();
-  const columns: ProColumns<DataSourceType>[] = [
+
+  const handleEditClick = (id: React.Key) => {
+    // Start editing the row
+    actionRef.current?.startEditable(id);
+    // Set editableKeys to the current edited row's key
+    setEditableRowKeys([id]);
+  };
+
+  const columns: ProColumns<QuestionType>[] = [
     {
       title: "Id",
       dataIndex: "friendlyId",
@@ -34,10 +42,25 @@ const CTable = () => {
       dataIndex: "status",
       valueType: "text",
       ellipsis: true,
+      render: (_, row) => {
+        if (row?.status === "Active") {
+          return (
+            <Tag key={row?.status} color="green">
+              {row?.status}
+            </Tag>
+          );
+        } else {
+          return (
+            <Tag key={row?.status} color="orange">
+              {row?.status}
+            </Tag>
+          );
+        }
+      },
     },
 
     {
-      title: "Phân loại",
+      title: "Category",
       key: "type",
       dataIndex: "type",
       valueType: "select",
@@ -120,7 +143,7 @@ const CTable = () => {
           onClick={() => {
             const tableDataSource = formRef.current?.getFieldValue(
               "table"
-            ) as DataSourceType[];
+            ) as QuestionType[];
             formRef.current?.setFieldsValue({
               table: tableDataSource.filter((item) => item.id !== row?.id),
             });
@@ -131,6 +154,8 @@ const CTable = () => {
         <a
           key="edit"
           onClick={() => {
+            handleEditClick(row.id);
+            debugger;
             actionRef.current?.startEditable(row.id);
           }}
         >
@@ -149,14 +174,14 @@ const CTable = () => {
         }}
       >
         <ProForm<{
-          table: DataSourceType[];
+          table: QuestionType[];
         }>
           formRef={formRef}
           initialValues={{
             table: defaultData,
           }}
         >
-          <EditableProTable<DataSourceType>
+          <EditableProTable<QuestionType>
             rowKey="id"
             scroll={{
               x: true,
@@ -171,7 +196,6 @@ const CTable = () => {
               record: (index) => {
                 return {
                   id: index + 1,
-                  friendlyId: "NM_0" + (index + 1).toString(2),
                 };
               },
             }}
@@ -188,4 +212,4 @@ const CTable = () => {
   );
 };
 
-export default CTable;
+export default AntDTable;

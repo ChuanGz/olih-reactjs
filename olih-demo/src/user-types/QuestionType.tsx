@@ -1,6 +1,6 @@
 import React from "react";
 
-export type DataSourceType = {
+export type QuestionType = {
   id: React.Key;
   friendlyId?: string;
   status?: string;

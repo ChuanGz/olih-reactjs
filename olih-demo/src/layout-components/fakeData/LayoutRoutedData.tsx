@@ -5,9 +5,10 @@ import {
   CloudServerOutlined,
   IdcardOutlined,
   ProductOutlined,
+  QuestionCircleOutlined,
 } from "@ant-design/icons";
 
-const MyFirstData = {
+const layoutData = {
   route: {
     path: "/",
     routes: [
@@ -18,6 +19,12 @@ const MyFirstData = {
         access: "canAdmin",
         component: "./Admin",
         routes: [
+          {
+            path: "/admin/sub-page0",
+            name: "0 - Questions",
+            icon: <QuestionCircleOutlined />,
+            component: "./table-components/AntDTable",
+          },
           {
             path: "/admin/sub-page1",
             name: "1 - Branches",
@@ -57,4 +64,4 @@ const MyFirstData = {
   },
 };
 
-export default MyFirstData;
+export default layoutData;

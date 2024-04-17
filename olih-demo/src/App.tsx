@@ -10,8 +10,8 @@ import {
 import HeaderDropdown from "./layout-components/HeaderDropdown";
 import MenuFooter from "./layout-components/MenuFooter";
 import MenuItem from "./layout-components/MenuItem";
-import defaultProps from "./layout-components/_defaultProps";
-import CTable from "./table-components/CTable";
+import defaultProps from "./layout-components/fakeData/LayoutRoutedData";
+import AntDTable from "./table-components/AntDTable";
 
 const App: React.FC = () => {
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
@@ -92,7 +92,7 @@ const App: React.FC = () => {
               ]}
               subTitle="No Implementation"
             >
-              <CTable></CTable>
+              <AntDTable></AntDTable>
               <ProCard style={{ height: "200vh", minHeight: 800 }}>
                 <div />
               </ProCard>

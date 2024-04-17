@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ConfigProvider, Button } from "antd";
+import enUS from "antd/locale/en_US";
 import {
   PageContainer,
   ProCard,
@@ -35,6 +36,7 @@ const App: React.FC = () => {
     <div id="pro-layout" style={{ height: "100vh", overflow: "auto" }}>
       <ProConfigProvider hashed={false}>
         <ConfigProvider
+          locale={enUS}
           getTargetContainer={() =>
             document.getElementById("pro-layout") || document.body
           }
@@ -68,7 +70,7 @@ const App: React.FC = () => {
             menu={{ collapsedShowGroupTitle: true }}
             avatarProps={{
               src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
-              size: "large",
+              size: "small",
               title: "Kendy",
               render: (props, dom) => <HeaderDropdown>{dom}</HeaderDropdown>,
             }}

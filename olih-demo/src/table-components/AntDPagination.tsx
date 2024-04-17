@@ -1,13 +1,13 @@
 import React from "react";
 import { Pagination } from "antd";
 
-const CPagination: React.FC = () => (
+const AntDPagination: React.FC = () => (
   <Pagination
-    total={1000}
+    total={20}
     showSizeChanger
     showQuickJumper
     showTotal={(total) => `Total ${total} items`}
   />
 );
 
-export default CPagination;
+export default AntDPagination;

@@ -6,7 +6,7 @@ import type {
 } from "@ant-design/pro-components";
 import { EditableProTable, ProCard, ProForm } from "@ant-design/pro-components";
 import React, { useRef, useState } from "react";
-import CPagination from "./AntDPagination";
+import AntDPagination from "./AntDPagination";
 import { Button, Tag } from "antd";
 import { defaultData } from "./fakeData/QuestionData";
 import { QuestionType } from "../user-types/QuestionType";
@@ -16,26 +16,21 @@ const AntDTable = () => {
   const formRef = useRef<ProFormInstance<any>>();
   const actionRef = useRef<ActionType>();
   const editableFormRef = useRef<EditableFormInstance>();
-
-  const handleEditClick = (id: React.Key) => {
-    // Start editing the row
-    actionRef.current?.startEditable(id);
-    // Set editableKeys to the current edited row's key
-    setEditableRowKeys([id]);
-  };
-
   const columns: ProColumns<QuestionType>[] = [
     {
-      title: "Id",
+      title: "Friend Id",
       dataIndex: "friendlyId",
       valueType: "text",
       ellipsis: true,
+      fixed: true,
+      width: "auto",
     },
     {
       title: "Question Bank",
       dataIndex: "associate",
       valueType: "text",
       ellipsis: true,
+      fixed: true,
     },
     {
       title: "Status",
@@ -57,8 +52,10 @@ const AntDTable = () => {
           );
         }
       },
+      fixed: true,
+      width: "auto",
+      align: "center",
     },
-
     {
       title: "Category",
       key: "type",
@@ -137,9 +134,11 @@ const AntDTable = () => {
     {
       title: "Option",
       valueType: "option",
+      fixed: "right",
       render: (_, row) => [
         <a
           key="delete"
+          color="red"
           onClick={() => {
             const tableDataSource = formRef.current?.getFieldValue(
               "table"
@@ -153,8 +152,8 @@ const AntDTable = () => {
         </a>,
         <a
           key="edit"
+          color="blue"
           onClick={() => {
-            handleEditClick(row.id);
             debugger;
             actionRef.current?.startEditable(row.id);
           }}
@@ -184,7 +183,8 @@ const AntDTable = () => {
           <EditableProTable<QuestionType>
             rowKey="id"
             scroll={{
-              x: true,
+              x: 1400,
+              y: 900,
             }}
             editableFormRef={editableFormRef}
             controlled
@@ -205,7 +205,7 @@ const AntDTable = () => {
               onChange: setEditableRowKeys,
             }}
           />
-          <CPagination></CPagination>
+          <AntDPagination></AntDPagination>
         </ProForm>
       </div>
     </ProCard>

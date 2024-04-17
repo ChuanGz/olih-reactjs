@@ -4,123 +4,12 @@ import type {
   ProColumns,
   ProFormInstance,
 } from "@ant-design/pro-components";
-import {
-  EditableProTable,
-  ProCard,
-  ProForm,
-  ProFormDependency,
-  ProFormDigit,
-} from "@ant-design/pro-components";
+import { EditableProTable, ProCard, ProForm } from "@ant-design/pro-components";
 import React, { useRef, useState } from "react";
 import CPagination from "./CPagination";
-
-type DataSourceType = {
-  id: React.Key;
-  associate?: string;
-  questionsNum?: number;
-  type?: string;
-  fraction?: number;
-  scoringMethod?: string;
-};
-
-const defaultData: DataSourceType[] = [
-  {
-    id: 1,
-    associate: "câu hỏi 01",
-    questionsNum: 10,
-    type: "multiple",
-    scoringMethod: "continuous",
-    fraction: 20,
-  },
-  {
-    id: 2,
-    associate: "Câu hỏi 02",
-    questionsNum: 10,
-    scoringMethod: "continuous",
-    type: "radio",
-    fraction: 20,
-  },
-  {
-    id: 3,
-    associate: "Câu hỏi 03",
-    questionsNum: 10,
-    type: "judge",
-    scoringMethod: "continuous",
-    fraction: 20,
-  },
-  {
-    id: 4,
-    associate: "Câu hỏi 04",
-    questionsNum: 10,
-    scoringMethod: "continuous",
-    type: "vacant",
-    fraction: 20,
-  },
-  {
-    id: 5,
-    associate: "câu hỏi 05",
-    questionsNum: 10,
-    type: "multiple",
-    scoringMethod: "continuous",
-    fraction: 20,
-  },
-  {
-    id: 6,
-    associate: "Câu hỏi 06",
-    questionsNum: 10,
-    scoringMethod: "continuous",
-    type: "radio",
-    fraction: 20,
-  },
-  {
-    id: 7,
-    associate: "Câu hỏi 07",
-    questionsNum: 10,
-    type: "judge",
-    scoringMethod: "continuous",
-    fraction: 20,
-  },
-  {
-    id: 8,
-    associate: "Câu hỏi 08",
-    questionsNum: 10,
-    scoringMethod: "continuous",
-    type: "vacant",
-    fraction: 20,
-  },
-  {
-    id: 9,
-    associate: "câu hỏi 09",
-    questionsNum: 10,
-    type: "multiple",
-    scoringMethod: "continuous",
-    fraction: 20,
-  },
-  {
-    id: 10,
-    associate: "Câu hỏi 10",
-    questionsNum: 10,
-    scoringMethod: "continuous",
-    type: "radio",
-    fraction: 20,
-  },
-  {
-    id: 11,
-    associate: "Câu hỏi 11",
-    questionsNum: 10,
-    type: "judge",
-    scoringMethod: "continuous",
-    fraction: 20,
-  },
-  {
-    id: 12,
-    associate: "Câu hỏi 12",
-    questionsNum: 10,
-    scoringMethod: "continuous",
-    type: "vacant",
-    fraction: 20,
-  },
-];
+import { Button } from "antd";
+import { defaultData } from "./defaultData";
+import { DataSourceType } from "./DataSourceType";
 
 const CTable = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
@@ -129,11 +18,24 @@ const CTable = () => {
   const editableFormRef = useRef<EditableFormInstance>();
   const columns: ProColumns<DataSourceType>[] = [
     {
+      title: "Id",
+      dataIndex: "friendlyId",
+      valueType: "text",
+      ellipsis: true,
+    },
+    {
       title: "Question Bank",
       dataIndex: "associate",
       valueType: "text",
       ellipsis: true,
     },
+    {
+      title: "Status",
+      dataIndex: "status",
+      valueType: "text",
+      ellipsis: true,
+    },
+
     {
       title: "Phân loại",
       key: "type",
@@ -198,6 +100,18 @@ const CTable = () => {
         })),
     },
     {
+      title: "Last Modified",
+      dataIndex: "lastModified",
+      valueType: "date",
+      ellipsis: true,
+    },
+    {
+      title: "Created At",
+      dataIndex: "created",
+      valueType: "date",
+      ellipsis: true,
+    },
+    {
       title: "Option",
       valueType: "option",
       render: (_, row) => [
@@ -212,7 +126,7 @@ const CTable = () => {
             });
           }}
         >
-          Delete
+          <Button>Delete</Button>
         </a>,
         <a
           key="edit"
@@ -220,7 +134,7 @@ const CTable = () => {
             actionRef.current?.startEditable(row.id);
           }}
         >
-          Edit
+          <Button>Edit</Button>
         </a>,
       ],
     },
@@ -230,7 +144,7 @@ const CTable = () => {
     <ProCard>
       <div
         style={{
-          maxWidth: 800,
+          maxWidth: 1200,
           margin: "auto",
         }}
       >
@@ -255,7 +169,10 @@ const CTable = () => {
             columns={columns}
             recordCreatorProps={{
               record: (index) => {
-                return { id: index + 1 };
+                return {
+                  id: index + 1,
+                  friendlyId: "NM_0" + (index + 1).toString(2),
+                };
               },
             }}
             editable={{

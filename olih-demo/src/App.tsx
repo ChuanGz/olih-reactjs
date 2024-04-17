@@ -83,14 +83,12 @@ const App: React.FC = () => {
             <PageContainer
               token={{ paddingInlinePageContainerContent: num }}
               extra={[
-                <Button
-                  key="1"
-                  type="primary"
-                  onClick={() => setNum(num > 0 ? 0 : 40)}
-                >
-                  Inactive All
+                <Button key="1" onClick={() => setNum(num > 0 ? 0 : 40)}>
+                  Activate
                 </Button>,
-                <Button key="2">Remove All</Button>,
+                <Button key="2" danger>
+                  Remove
+                </Button>,
               ]}
               subTitle="No Implementation"
             >

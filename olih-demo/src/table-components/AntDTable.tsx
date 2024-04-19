@@ -23,7 +23,7 @@ const AntDTable = () => {
       dataIndex: "status",
       ellipsis: true,
       render: (_, row) => {
-        if (row?.status!.length > 7) {
+        if (row?.status!.length > 10) {
           return (
             <Tag key={row?.status} color="green">
               {row?.status}

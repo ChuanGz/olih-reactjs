@@ -1,14 +1,9 @@
-import type { ActionType, ProFormInstance } from "@ant-design/pro-components";
-import { ProCard, ProForm } from "@ant-design/pro-components";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button, Table, TableColumnsType, Tag } from "antd";
 import { defaultData } from "./fakeData/QuestionData";
 import { QuestionType } from "../user-types/QuestionType";
 
 const AntDTable = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
-  const formRef = useRef<ProFormInstance<any>>();
-  const actionRef = useRef<ActionType>();
   const columns: TableColumnsType<QuestionType> = [
     {
       title: "Friend Id",
@@ -77,30 +72,23 @@ const AntDTable = () => {
     {
       title: "Option",
       fixed: "right",
+      width: 200,
       render: (_, row) => [
-        <a
-          key="delete"
-          color="red"
-          onClick={() => {
-            const tableDataSource = formRef.current?.getFieldValue(
-              "table"
-            ) as QuestionType[];
-            formRef.current?.setFieldsValue({
-              table: tableDataSource.filter((item) => item.id !== row?.id),
-            });
-          }}
-        >
-          Delete |
-        </a>,
-        <a
-          key="edit"
-          color="blue"
-          onClick={() => {
-            actionRef.current?.startEditable(row.id);
-          }}
-        >
-          | Edit
-        </a>,
+        <Button size="small">
+          <b>
+            <em>View</em>
+          </b>
+        </Button>,
+        <Button size="small">
+          <b>
+            <em>Edit</em>
+          </b>
+        </Button>,
+        <Button size="small">
+          <b>
+            <em>Delete</em>
+          </b>
+        </Button>,
       ],
     },
   ];
@@ -119,8 +107,8 @@ const AntDTable = () => {
     <Table<QuestionType>
       rowKey="id"
       scroll={{
-        x: 1400,
-        y: 900,
+        x: 1700,
+        y: 1000,
       }}
       rowSelection={rowSelection}
       columns={columns}

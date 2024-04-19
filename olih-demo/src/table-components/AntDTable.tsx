@@ -23,7 +23,7 @@ const AntDTable = () => {
       dataIndex: "status",
       ellipsis: true,
       render: (_, row) => {
-        if (row?.status === "Active") {
+        if (row?.status!.length > 7) {
           return (
             <Tag key={row?.status} color="green">
               {row?.status}
@@ -45,19 +45,23 @@ const AntDTable = () => {
       title: "Category",
       key: "type",
       dataIndex: "type",
+      ellipsis: true,
     },
     {
       title: "Question Number",
       dataIndex: "questionsNum",
+      ellipsis: true,
     },
     {
       title: "Scoring Method",
       dataIndex: "scoringMethod",
+      ellipsis: true,
     },
     {
       title: "Fraction",
       width: 150,
       dataIndex: "fraction",
+      ellipsis: true,
     },
     {
       title: "Last Modified",
@@ -73,6 +77,7 @@ const AntDTable = () => {
       title: "Option",
       fixed: "right",
       width: 200,
+      ellipsis: true,
       render: (_, row) => [
         <Button size="small" type="primary">
           <b>View</b>
@@ -100,10 +105,6 @@ const AntDTable = () => {
   return (
     <Table<QuestionType>
       rowKey="id"
-      scroll={{
-        x: 1700,
-        y: 1000,
-      }}
       rowSelection={rowSelection}
       columns={columns}
       dataSource={defaultData}

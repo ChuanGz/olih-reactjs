@@ -1,10 +1,7 @@
 import React from "react";
 import { Dropdown } from "antd";
 import { SecurityScanOutlined, LogoutOutlined } from "@ant-design/icons";
-
-interface HeaderDropdownProps {
-  children: React.ReactNode;
-}
+import { HeaderDropdownProps } from "../../types/HeaderDropdownProps";
 
 const HeaderDropdown: React.FC<HeaderDropdownProps> = ({ children }) => {
   return (

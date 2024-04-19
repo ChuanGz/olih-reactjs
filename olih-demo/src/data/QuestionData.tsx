@@ -1,4 +1,4 @@
-import { QuestionType } from "../../user-types/QuestionType";
+import { QuestionType } from "../types/QuestionType";
 
 export const defaultData: QuestionType[] = [
   {

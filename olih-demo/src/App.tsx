@@ -3,16 +3,15 @@ import { ConfigProvider, Button } from "antd";
 import enUS from "antd/locale/en_US";
 import {
   PageContainer,
-  ProCard,
   ProConfigProvider,
   ProLayout,
   ProSettings,
 } from "@ant-design/pro-components";
-import HeaderDropdown from "./layout-components/HeaderDropdown";
-import MenuFooter from "./layout-components/MenuFooter";
-import MenuItem from "./layout-components/MenuItem";
-import defaultProps from "./layout-components/fakeData/LayoutRoutedData";
-import AntDTable from "./table-components/AntDTable";
+import HeaderDropdown from "./components/common/HeaderDropdown";
+import MenuFooter from "./components/common/MenuFooter";
+import MenuItem from "./components/common/MenuItem";
+import defaultProps from "./data/LayoutRoutedData";
+import AntDTable from "./components/feautures/question/AntDTable";
 
 const App: React.FC = () => {
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
@@ -98,9 +97,6 @@ const App: React.FC = () => {
               subTitle="No Implementation"
             >
               <AntDTable></AntDTable>
-              <ProCard style={{ height: "200vh", minHeight: 800 }}>
-                <div />
-              </ProCard>
             </PageContainer>
           </ProLayout>
         </ConfigProvider>

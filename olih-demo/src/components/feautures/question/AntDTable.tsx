@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Table, TableColumnsType, Tag } from "antd";
-import { defaultData } from "./fakeData/QuestionData";
-import { QuestionType } from "../user-types/QuestionType";
+import { defaultData } from "../../../data/QuestionData";
+import { QuestionType } from "../../../types/QuestionType";
 
 const AntDTable = () => {
   const columns: TableColumnsType<QuestionType> = [

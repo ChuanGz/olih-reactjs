@@ -9,6 +9,6 @@ export type QuestionType = {
   type?: string;
   fraction?: number;
   scoringMethod?: string;
-  lastModified?: Date;
-  created?: Date;
+  lastModified?: string;
+  created?: string;
 };

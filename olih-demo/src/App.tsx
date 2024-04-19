@@ -27,6 +27,8 @@ const App: React.FC = () => {
     colorWeak: false,
     colorPrimary: "orange",
     title: "OLIH-Demo",
+    navTheme: "light",
+    contentWidth: "Fluid",
   });
   if (typeof document === "undefined") {
     return <div />;
@@ -72,6 +74,7 @@ const App: React.FC = () => {
               src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
               size: "small",
               title: "Kendy",
+
               render: (props, dom) => <HeaderDropdown>{dom}</HeaderDropdown>,
             }}
             menuFooterRender={() => <MenuFooter />}

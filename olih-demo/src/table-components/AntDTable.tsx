@@ -163,53 +163,64 @@ const AntDTable = () => {
       ],
     },
   ];
+ const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-  return (
-    <ProCard>
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "auto",
-        }}
-      >
-        <ProForm<{
-          table: QuestionType[];
-        }>
-          formRef={formRef}
-          initialValues={{
-            table: defaultData,
-          }}
-        >
-          <EditableProTable<QuestionType>
-            rowKey="id"
-            scroll={{
-              x: 1400,
-              y: 900,
-            }}
-            editableFormRef={editableFormRef}
-            controlled
-            actionRef={actionRef}
-            maxLength={10}
-            name="table"
-            columns={columns}
-            recordCreatorProps={{
-              record: (index) => {
-                return {
-                  id: index + 1,
-                };
-              },
-            }}
-            editable={{
-              type: "multiple",
-              editableKeys,
-              onChange: setEditableRowKeys,
-            }}
-          />
-          <AntDPagination></AntDPagination>
-        </ProForm>
-      </div>
-    </ProCard>
-  );
+ const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+   console.log("selectedRowKeys changed: ", newSelectedRowKeys);
+   setSelectedRowKeys(newSelectedRowKeys);
+ };
+ const rowSelection = {
+   selectedRowKeys,
+   onChange: onSelectChange,
+ };
+
+ return (
+   <ProCard>
+     <div
+       style={{
+         maxWidth: 1200,
+         margin: "auto",
+       }}
+     >
+       <ProForm<{
+         table: QuestionType[];
+       }>
+         formRef={formRef}
+         initialValues={{
+           table: defaultData,
+         }}
+       >
+         <EditableProTable<QuestionType>
+           rowKey="id"
+           scroll={{
+             x: 1400,
+             y: 900,
+           }}
+           rowSelection={rowSelection}
+           editableFormRef={editableFormRef}
+           controlled
+           actionRef={actionRef}
+           maxLength={10}
+           name="table"
+           columns={columns}
+           recordCreatorProps={{
+             record: (index) => {
+               return {
+                 id: index + 1,
+               };
+             },
+           }}
+           editable={{
+             type: "multiple",
+             editableKeys,
+             onChange: setEditableRowKeys,
+           }}
+         />
+         <AntDPagination></AntDPagination>
+       </ProForm>
+     </div>
+   </ProCard>
+ );
 };
 
 export default AntDTable;

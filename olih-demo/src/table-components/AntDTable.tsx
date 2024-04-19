@@ -74,20 +74,14 @@ const AntDTable = () => {
       fixed: "right",
       width: 200,
       render: (_, row) => [
-        <Button size="small">
-          <b>
-            <em>View</em>
-          </b>
+        <Button size="small" type="primary">
+          <b>View</b>
         </Button>,
         <Button size="small">
-          <b>
-            <em>Edit</em>
-          </b>
+          <b>Edit</b>
         </Button>,
-        <Button size="small">
-          <b>
-            <em>Delete</em>
-          </b>
+        <Button size="small" danger>
+          <b>Delete</b>
         </Button>,
       ],
     },

@@ -1,5 +1,5 @@
 import React from "react";
 
-export interface HeaderDropdownProps {
+export type HeaderDropdownType = {
   children: React.ReactNode;
-}
+};

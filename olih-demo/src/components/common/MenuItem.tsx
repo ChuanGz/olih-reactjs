@@ -1,7 +1,7 @@
 import React from "react";
-import { MenuItemProps } from "../../types/MenuItemProps";
+import { MenuItemType } from "../../types/MenuItemType";
 
-const MenuItem: React.FC<MenuItemProps> = ({ item, setPathname, dom }) => {
+const MenuItem: React.FC<MenuItemType> = ({ item, setPathname, dom }) => {
   return <div onClick={() => setPathname(item.path || "/welcome")}>{dom}</div>;
 };
 

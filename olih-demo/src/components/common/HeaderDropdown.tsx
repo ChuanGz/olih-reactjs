@@ -1,28 +1,35 @@
 import React from "react";
-import { Dropdown } from "antd";
+import { Dropdown, Menu } from "antd";
 import { SecurityScanOutlined, LogoutOutlined } from "@ant-design/icons";
-import { HeaderDropdownProps } from "../../types/HeaderDropdownProps";
+import { HeaderDropdownType } from "../../types/DropdownType";
 
-const HeaderDropdown: React.FC<HeaderDropdownProps> = ({ children }) => {
+const HeaderDropdown: React.FC<HeaderDropdownType> = ({ children }) => {
+  const handleItemClick = (key: string) => {
+    // Handle the click event based on the key
+    if (key === "profile") {
+      alert("test profile");
+    } else if (key === "logout") {
+      alert("test log out");
+    }
+  };
+
   return (
-    <Dropdown
-      menu={{
-        items: [
-          {
-            key: "profile",
-            icon: <SecurityScanOutlined />,
-            label: "profile",
-          },
-          {
-            key: "logout",
-            icon: <LogoutOutlined />,
-            label: "logout",
-          },
-        ],
-      }}
-    >
-      {children}
-    </Dropdown>
+    <Menu>
+      <Menu.Item
+        key="profile"
+        icon={<SecurityScanOutlined />}
+        onClick={() => handleItemClick("profile")}
+      >
+        Profile
+      </Menu.Item>
+      <Menu.Item
+        key="logout"
+        icon={<LogoutOutlined />}
+        onClick={() => handleItemClick("logout")}
+      >
+        Logout
+      </Menu.Item>
+    </Menu>
   );
 };
 
